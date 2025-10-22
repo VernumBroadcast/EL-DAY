@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Ellie's Chaotic Adventure Day 💅</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add some fun fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Ellie's Choose Your Own Adventure ✨</h1>
+            <div class="subtitle">A slightly unhinged experience</div>
+            <div class="time-display" id="currentTime"></div>
+            <div class="love-quote" id="loveQuote"></div>
+            <button class="refresh-btn" id="refreshBtn" onclick="refreshData()" title="Refresh choices from Google Sheets">
+                ↻ Refresh Choices
+            </button>
+            <!-- Secret admin button (tap 3 times) -->
+            <div class="admin-trigger" id="adminTrigger" onclick="handleAdminTrigger()" title="👀">
+                ⚙️
+            </div>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0/6 choices made</div>
+        </div>
+
+        <div class="content-area">
+            <div class="story-section" id="storySection">
+                <h2 id="timeSlotTitle"></h2>
+                <p id="description"></p>
+                
+                <div class="choices" id="choicesContainer"></div>
+            </div>
+
+            <div class="picture-reveal" id="pictureReveal" style="display: none;">
+                <div class="reveal-content">
+                    <h3>✨ Memory Unlocked! ✨</h3>
+                    <div class="picture-container">
+                        <img id="revealedPicture" src="" alt="Special memory">
+                    </div>
+                    <p id="pictureCaption" class="caption-text"></p>
+                    <button class="continue-btn" onclick="continueToNext()">
+                        Next Adventure →
+                    </button>
+                </div>
+            </div>
+
+            <div class="end-screen" id="endScreen" style="display: none;">
+                <h2>🎉 Day Complete! 🎉</h2>
+                <p></p>
+                <div class="memories-grid" id="memoriesGrid"></div>
+                <button class="restart-btn" onclick="restartAdventure()">
+                    🔄 Relive the Chaos
+                </button>
+            </div>
+        </div>
+
+        <div class="journey-tracker">
+            <h3>📍 Your Journey</h3>
+            <div id="journeySteps">
+                <p style="text-align: center; color: #999; font-size: 0.9em; padding: 20px;">
+                    Your choices will appear here ✨
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
