@@ -4,6 +4,11 @@
 const GOOGLE_SHEET_ID = '1_kVhwqOzmyB6mQfvWCHuGG0C6icfbzae8zfr9v9XIXM';
 const GOOGLE_SHEET_NAME = 'ELDAY'; // Name of your sheet tab
 
+// 🐱 REMOTE HECTOR BLESSING CONFIGURATION 🐱
+// After setting up Apps Script (see APPS_SCRIPT.js), paste your Web App URL here:
+// Example: 'https://script.google.com/macros/s/AKfycbx.../exec'
+const APPS_SCRIPT_URL = ''; // 👈 PASTE YOUR APPS SCRIPT WEB APP URL HERE (leave empty until setup)
+
 // 🔐 ADMIN/TESTING MODE CONFIGURATION 🔐
 // Desktop: Press Ctrl+Shift+A (or Cmd+Shift+A on Mac)
 // Mobile: Tap the ⚙️ icon (bottom right) 3 times, then enter PIN
@@ -919,17 +924,34 @@ async function triggerHectorManually() {
 // Send blessing signal via Google Sheets
 async function sendHectorBlessingSignal() {
     try {
-        // Note: This requires the Google Sheets Apps Script web app endpoint
-        // We'll use a simple timestamp in a cell that all devices check
         const timestamp = Date.now();
         
-        // Store in localStorage to trigger on this device too
-        localStorage.setItem('hectorBlessingTrigger', timestamp.toString());
+        // If Apps Script is configured, send to Google Sheets
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.trim() !== '') {
+            console.log('📡 Sending blessing signal to Google Sheets...');
+            const response = await fetch(`${APPS_SCRIPT_URL}?action=trigger`, {
+                method: 'GET',
+                mode: 'cors'
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                console.log('✅ Blessing signal sent to Google Sheets! Timestamp:', data.timestamp);
+                // Store locally too for immediate effect
+                localStorage.setItem('hectorBlessingTrigger', data.timestamp.toString());
+                return true;
+            }
+        }
         
-        console.log('📡 Blessing signal sent! Timestamp:', timestamp);
+        // Fallback: Use localStorage only (works for same-device testing)
+        console.log('📱 Apps Script not configured, using localStorage fallback');
+        localStorage.setItem('hectorBlessingTrigger', timestamp.toString());
+        console.log('📡 Blessing signal sent locally! Timestamp:', timestamp);
         return true;
     } catch (error) {
         console.error('Failed to send blessing signal:', error);
+        // Even on error, store locally
+        localStorage.setItem('hectorBlessingTrigger', Date.now().toString());
         return false;
     }
 }
@@ -937,19 +959,48 @@ async function sendHectorBlessingSignal() {
 // Check for remote Hector blessing triggers
 async function checkForRemoteBlessingTrigger() {
     try {
-        // Get the last known trigger time
         const lastCheck = parseInt(localStorage.getItem('lastHectorCheck') || '0');
-        const lastTrigger = parseInt(localStorage.getItem('hectorBlessingTrigger') || '0');
+        let remoteTrigger = 0;
         
-        // If there's a new trigger since last check
-        if (lastTrigger > lastCheck) {
+        // If Apps Script is configured, check Google Sheets
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.trim() !== '') {
+            try {
+                const response = await fetch(`${APPS_SCRIPT_URL}?action=check`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    remoteTrigger = parseInt(data.trigger) || 0;
+                    
+                    // If there's a new trigger from Google Sheets
+                    if (remoteTrigger > lastCheck && remoteTrigger > 0) {
+                        console.log('🎯 Remote Hector blessing detected from Google Sheets!');
+                        localStorage.setItem('lastHectorCheck', Date.now().toString());
+                        
+                        // Small delay for dramatic effect
+                        setTimeout(() => {
+                            showHectorBlessing();
+                        }, 1000);
+                    }
+                }
+            } catch (fetchError) {
+                console.log('📱 Apps Script fetch failed, checking localStorage fallback');
+            }
+        }
+        
+        // Also check localStorage (for local triggers or fallback)
+        const localTrigger = parseInt(localStorage.getItem('hectorBlessingTrigger') || '0');
+        if (localTrigger > lastCheck && localTrigger > remoteTrigger) {
+            console.log('📱 Local Hector blessing detected!');
             localStorage.setItem('lastHectorCheck', Date.now().toString());
             
-            // Small delay for dramatic effect
             setTimeout(() => {
                 showHectorBlessing();
-            }, 3000);
+            }, 1000);
         }
+        
     } catch (error) {
         console.error('Error checking for remote blessing:', error);
     }
