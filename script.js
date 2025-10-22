@@ -37,9 +37,14 @@ const girlbossQuotes = [
     "Better than a Peter Morgan lecture, that's for sure",
     "Lilly's probably talking about Ethan rn 💀",
     "Amanda flaked, so it's just us today 💕",
-    "James Light energy: strange but we love it",
     "Josh Barber: 'It's just colleagues' ...sure bestie 😏",
-    "Hector is judging our life choices from afar 🐱👑"
+    "Hector is judging our life choices from afar 🐱👑",
+    "Better than sleeping in a morgue, Angel 💀",
+    "Brought to you by 372 Productions 🎬",
+    "No morgue vibes today, just good vibes ✨",
+    "Nights at the Romforlt Hilton (Studio Apartment Edition) 🏨",
+    "El's probably studying for her driving test rn 🚗",
+    "James Light energy is NOT the vibe today 🚫"
 ];
 
 // Locked time slot messages with ENERGY
@@ -56,7 +61,10 @@ const lockedQuotes = [
     "You're being more impatient than Lilly talking about Ethan rn",
     "Don't rush it or you'll get a concussion (again) 😅",
     "This is more locked than Josh's 'colleague relationship' 🔒",
-    "Amanda would flake on this too but YOU have to wait 💀"
+    "Amanda would flake on this too but YOU have to wait 💀",
+    "More locked than the morgue doors at night 💀🔒",
+    "Study for your driving test while you wait, El 🚗",
+    "This timing brought to you by 372 Productions 🎬"
 ];
 
 // State management
@@ -158,7 +166,7 @@ const fallbackData = {
             },
             {
                 text: "🌮 Something spicy and chaotic (like us)",
-                caption: "Risk-takers only, Trouble. We're living on the EDGE. This is our James Light era - strange choices but we own it."
+                caption: "Risk-takers only, Trouble. We're living on the EDGE. Better than the food options at the morgue, that's for sure. 💀"
             }
         ]
     },
@@ -175,7 +183,7 @@ const fallbackData = {
             },
             {
                 text: "🛍️ Shopping (window or wallet damage, dealer's choice)",
-                caption: "Retail therapy? In THIS economy? El, we're bold. Successfully avoided Diana in the shops too. Double win! 🎯"
+                caption: "Retail therapy? In THIS economy? El, we're bold. 372 Productions presents: A Shopping Adventure 🎬 Successfully avoided Diana too!"
             },
             {
                 text: "🎮 Competitive games where we pretend we're not competitive",
@@ -196,7 +204,7 @@ const fallbackData = {
             },
             {
                 text: "🎵 Live music (we'll pretend we knew the band before)",
-                caption: "Yeah, we're into underground music. By underground we mean... this band. Now. Hello You. James Light was probably there being strange in the corner."
+                caption: "Yeah, we're into underground music. By underground we mean... this band. Now. Hello You. Better live music than whatever James Light is into. 🎵"
             },
             {
                 text: "🌊 Sunset chasing like we're in a music video",
@@ -213,7 +221,7 @@ const fallbackData = {
         choices: [
             {
                 text: "🕯️ Fancy dinner (dress code: yes. Budget: don't think about it)",
-                caption: "We got DRESSED UP and felt FANCY, Trouble. Worth every penny (probably) 💎 Hector the cat would be so proud of our sophistication. This is OUR Roman Empire."
+                caption: "We got DRESSED UP and felt FANCY, Trouble. Worth every penny (probably) 💎 Way fancier than Nights at the Romforlt Hilton (Studio Apartment). Hector would be proud."
             },
             {
                 text: "🍜 Authentic ethnic food adventure (spice level: risky)",
@@ -221,7 +229,7 @@ const fallbackData = {
             },
             {
                 text: "🍔 Casual chaos (burgers, vibes, no dress code)",
-                caption: "Sometimes you just need a good burger and zero expectations, Darling 🍔 Lilly's still talking about Ethan somewhere but we're living our best life."
+                caption: "Sometimes you just need a good burger and zero expectations, Darling 🍔 A 372 Productions special: Burgers & Vibes. Lilly's still talking about Ethan but we're thriving."
             }
         ]
     },
@@ -238,11 +246,11 @@ const fallbackData = {
             },
             {
                 text: "🌃 Night walk + dessert (main character in a rom-com vibes)",
-                caption: "We really walked around at night like we're in a movie montage, Hello You 🌙 No concussions, no Diana sightings, just vibes. Perfect ending."
+                caption: "We really walked around at night like we're in a movie montage, Hello You 🌙 No morgues, no concussions, no Diana. Just main character energy. Perfect ending."
             },
             {
                 text: "🏠 Cozy night in (pajamas by 8:30, no judgment)",
-                caption: "Sometimes staying in IS the adventure, El. We're homebodies and we're THRIVING. 💕 Hector the cat joined us for maximum cozy energy. He is, after all, the love of our lives. 🐱👑"
+                caption: "Sometimes staying in IS the adventure, El. Nights at the Romforlt Hilton (Studio Apartment) never looked so good. 💕 Hector joined for max cozy. Better than the morgue, 10/10. 🐱👑"
             }
         ]
     }
@@ -563,7 +571,7 @@ function showEndScreen() {
     const paragraph = endScreen.querySelector('p');
     
     heading.textContent = "WE DID IT! 🎉";
-    paragraph.innerHTML = "What an ICONIC day, Ellie! We really said 'let's have the best day ever' and then DID THAT. <br><br>No concussions ✅<br>Avoided Diana ✅<br>Better than any Peter Morgan lecture ✅<br>Made Hector proud 🐱✅<br>Main character energy all day long, Angel 💅✨<br><br>Amanda flaked, Lilly talked about Ethan, James Light was being strange somewhere, Josh insists it's just colleagues, but WE had the best day ever.<br><br>Love you, you absolute legend 💕";
+    paragraph.innerHTML = "What an ICONIC day, Ellie! We really said 'let's have the best day ever' and then DID THAT. <br><br>A 372 Productions Special 🎬<br><br>No concussions ✅<br>Avoided Diana ✅<br>Better than sleeping in a morgue ✅<br>Better than any Peter Morgan lecture ✅<br>Made Hector proud 🐱✅<br>Way better than Nights at the Romforlt Hilton ✅<br>Main character energy all day long, Angel 💅✨<br><br>Amanda flaked, Lilly talked about Ethan, James Light was being weird somewhere, Josh insists it's just colleagues, you probably should've been studying for your driving test... but WE had the best day ever.<br><br>Love you, you absolute legend 💕";
     
     const memoriesGrid = document.getElementById('memoriesGrid');
     memoriesGrid.innerHTML = '';
@@ -668,6 +676,9 @@ function activateAdminModeMobile() {
         showAdminPanel();
         alert('✅ Admin mode activated!\n\nAll stages are now unlocked for testing. Tap any stage to jump there.');
         displayStage(currentStage); // Refresh current stage
+    } else if (pin === '9999') {
+        // SECRET CODE: Instantly trigger Hector blessing!
+        showHectorBlessing();
     } else if (pin) {
         alert('❌ Wrong PIN! Nice try though 😏');
     }
@@ -755,7 +766,10 @@ function showAdminPanel() {
     });
     
     panelHTML += `
-        <button onclick="resetProgress()" style="width: 100%; margin: 15px 0 5px 0; padding: 12px; background: #ffd93d; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95em; touch-action: manipulation;">
+        <button onclick="triggerHectorManually()" style="width: 100%; margin: 15px 0 5px 0; padding: 12px; background: #c44569; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95em; touch-action: manipulation;">
+            🐱 Summon Daily Hex
+        </button>
+        <button onclick="resetProgress()" style="width: 100%; margin: 5px 0; padding: 12px; background: #ffd93d; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95em; touch-action: manipulation;">
             🔄 Reset Progress
         </button>
         <button onclick="deactivateAdminMode()" style="width: 100%; margin: 5px 0; padding: 12px; background: #666; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95em; touch-action: manipulation;">
@@ -872,6 +886,16 @@ function jumpToStage(stageName) {
     }, 50);
 }
 
+// Manually trigger Hector blessing (admin only)
+function triggerHectorManually() {
+    if (!adminMode) return;
+    
+    hideAdminPanel();
+    setTimeout(() => {
+        showHectorBlessing();
+    }, 500);
+}
+
 // Reset all progress (for testing)
 function resetProgress() {
     if (!adminMode) return;
@@ -901,8 +925,132 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// 🐱 HECTOR'S DAILY BLESSING 🐱
+// Track page visits and randomly show Hector blessing
+function checkForHectorBlessing() {
+    // Get visit count from localStorage
+    let visitCount = parseInt(localStorage.getItem('ellieVisitCount') || '0');
+    visitCount++;
+    localStorage.setItem('ellieVisitCount', visitCount.toString());
+    
+    // Check if already blessed today
+    const lastBlessing = localStorage.getItem('lastHectorBlessing');
+    const today = new Date().toDateString();
+    
+    // After 3-4 visits, and not blessed today yet, randomly show Hector (30% chance)
+    if (visitCount >= 3 && lastBlessing !== today && Math.random() < 0.3) {
+        // Wait a bit before showing (5-15 seconds)
+        const delay = 5000 + Math.random() * 10000;
+        setTimeout(() => {
+            showHectorBlessing();
+            localStorage.setItem('lastHectorBlessing', today);
+        }, delay);
+    }
+}
+
+function showHectorBlessing() {
+    // Create full-screen overlay
+    const overlay = document.createElement('div');
+    overlay.id = 'hectorBlessing';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.5s ease;
+        padding: 20px;
+    `;
+    
+    overlay.innerHTML = `
+        <div style="text-align: center; max-width: 600px; position: relative;">
+            <button onclick="closeHectorBlessing()" style="position: absolute; top: -20px; right: -20px; background: #ff6b9d; color: white; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 1.5em; cursor: pointer; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,157,0.5); z-index: 1; font-family: 'Outfit', sans-serif; touch-action: manipulation;">
+                ✕
+            </button>
+            <div style="background: white; padding: 40px 30px; border-radius: 25px; box-shadow: 0 20px 60px rgba(255,107,157,0.4); border: 5px solid #ff6b9d;">
+                <h2 style="color: #ff6b9d; font-size: 2em; font-weight: 800; margin-bottom: 20px; font-family: 'Outfit', sans-serif; animation: pulse 1s infinite;">
+                    ✨ You Have Been Blessed ✨
+                </h2>
+                <h3 style="color: #c44569; font-size: 1.5em; font-weight: 700; margin-bottom: 25px; font-family: 'Outfit', sans-serif;">
+                    By Your Daily Hex
+                </h3>
+                <div style="margin: 25px 0;">
+                    <img src="images/hector.png" alt="Hector the Cat" style="max-width: 100%; max-height: 400px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); object-fit: contain;" onerror="this.src='https://placekitten.com/400/400'">
+                </div>
+                <p style="color: #555; font-size: 1.1em; line-height: 1.6; font-family: 'Outfit', sans-serif; font-weight: 600; margin-top: 20px;">
+                    Hector the cat has deemed you worthy of his presence today. 🐱👑
+                </p>
+                <p style="color: #777; font-size: 0.95em; margin-top: 15px; font-family: 'Outfit', sans-serif; font-style: italic;">
+                    May your day be filled with snacks, naps, and knocking things off tables.
+                </p>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    
+    // Add some confetti effect
+    createConfetti();
+}
+
+function closeHectorBlessing() {
+    const overlay = document.getElementById('hectorBlessing');
+    if (overlay) {
+        overlay.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => overlay.remove(), 300);
+    }
+}
+
+function createConfetti() {
+    const emojis = ['🐱', '💕', '✨', '👑', '💅', '🎉'];
+    for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            confetti.style.cssText = `
+                position: fixed;
+                top: -50px;
+                left: ${Math.random() * 100}%;
+                font-size: 2em;
+                z-index: 100000;
+                animation: fall ${3 + Math.random() * 2}s linear;
+                pointer-events: none;
+            `;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }, i * 100);
+    }
+}
+
+// Add animations to styles
+if (!document.getElementById('hectorStyles')) {
+    const style = document.createElement('style');
+    style.id = 'hectorStyles';
+    style.textContent = `
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
 // Start the adventure when page loads
-window.onload = initAdventure;
+window.onload = () => {
+    initAdventure();
+    checkForHectorBlessing();
+};
 
 // Update every minute to check if new time slots are available
 setInterval(() => {
