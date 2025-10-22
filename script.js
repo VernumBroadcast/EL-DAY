@@ -7,7 +7,7 @@ const GOOGLE_SHEET_NAME = 'ELDAY'; // Name of your sheet tab
 // 🐱 REMOTE HECTOR BLESSING CONFIGURATION 🐱
 // After setting up Apps Script (see APPS_SCRIPT.js), paste your Web App URL here:
 // Example: 'https://script.google.com/macros/s/AKfycbx.../exec'
-const APPS_SCRIPT_URL = ''; // 👈 PASTE YOUR APPS SCRIPT WEB APP URL HERE (leave empty until setup)
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3pcXRZkZaljRkasJ_JPdMhHWP5g_jY1ysz3dPyeNFSzDfK9XYwcxoU-DBayxOk7MU/exec'; // ✅ Connected!
 
 // 🔐 ADMIN/TESTING MODE CONFIGURATION 🔐
 // Desktop: Press Ctrl+Shift+A (or Cmd+Shift+A on Mac)
