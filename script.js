@@ -1039,7 +1039,7 @@ function showHectorBlessing() {
                     By Your Daily Hex
                 </h3>
                 <div style="margin: 25px 0;">
-                    <img src="images/hector.png" alt="Hector the Cat" style="max-width: 100%; max-height: 400px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); object-fit: contain;" onerror="this.src='https://placekitten.com/400/400'">
+                    <img src="images/hector.png" alt="Hector the Cat" style="max-width: 100%; max-height: 400px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); object-fit: contain;">
                 </div>
                 <p style="color: #555; font-size: 1.1em; line-height: 1.6; font-family: 'Outfit', sans-serif; font-weight: 600; margin-top: 20px;">
                     Hector the cat has deemed you worthy of his presence today. 🐱👑
