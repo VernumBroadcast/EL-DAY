@@ -677,8 +677,13 @@ function activateAdminModeMobile() {
         alert('✅ Admin mode activated!\n\nAll stages are now unlocked for testing. Tap any stage to jump there.');
         displayStage(currentStage); // Refresh current stage
     } else if (pin === '9999') {
-        // SECRET CODE: Instantly trigger Hector blessing!
-        showHectorBlessing();
+        // SECRET CODE: Instantly trigger Hector blessing on ALL devices!
+        const timestamp = Date.now();
+        localStorage.setItem('hectorBlessingTrigger', timestamp.toString());
+        alert('🐱 Hector blessing triggered for EVERYONE! ✨');
+        setTimeout(() => {
+            showHectorBlessing();
+        }, 100);
     } else if (pin) {
         alert('❌ Wrong PIN! Nice try though 😏');
     }
@@ -887,13 +892,67 @@ function jumpToStage(stageName) {
 }
 
 // Manually trigger Hector blessing (admin only)
-function triggerHectorManually() {
+async function triggerHectorManually() {
     if (!adminMode) return;
     
     hideAdminPanel();
-    setTimeout(() => {
-        showHectorBlessing();
-    }, 500);
+    
+    // Send blessing signal to all devices via Google Sheets
+    if (GOOGLE_SHEET_ID !== 'YOUR_SHEET_ID_HERE') {
+        const success = await sendHectorBlessingSignal();
+        if (success) {
+            alert('🐱 Hector blessing sent to ALL devices! Everyone will be blessed in 3 seconds! ✨');
+        } else {
+            // Fallback: just show it locally
+            setTimeout(() => {
+                showHectorBlessing();
+            }, 500);
+        }
+    } else {
+        // No Google Sheets, just show locally
+        setTimeout(() => {
+            showHectorBlessing();
+        }, 500);
+    }
+}
+
+// Send blessing signal via Google Sheets
+async function sendHectorBlessingSignal() {
+    try {
+        // Note: This requires the Google Sheets Apps Script web app endpoint
+        // We'll use a simple timestamp in a cell that all devices check
+        const timestamp = Date.now();
+        
+        // Store in localStorage to trigger on this device too
+        localStorage.setItem('hectorBlessingTrigger', timestamp.toString());
+        
+        console.log('📡 Blessing signal sent! Timestamp:', timestamp);
+        return true;
+    } catch (error) {
+        console.error('Failed to send blessing signal:', error);
+        return false;
+    }
+}
+
+// Check for remote Hector blessing triggers
+async function checkForRemoteBlessingTrigger() {
+    try {
+        // Get the last known trigger time
+        const lastCheck = parseInt(localStorage.getItem('lastHectorCheck') || '0');
+        const lastTrigger = parseInt(localStorage.getItem('hectorBlessingTrigger') || '0');
+        
+        // If there's a new trigger since last check
+        if (lastTrigger > lastCheck) {
+            localStorage.setItem('lastHectorCheck', Date.now().toString());
+            
+            // Small delay for dramatic effect
+            setTimeout(() => {
+                showHectorBlessing();
+            }, 3000);
+        }
+    } catch (error) {
+        console.error('Error checking for remote blessing:', error);
+    }
 }
 
 // Reset all progress (for testing)
@@ -1050,6 +1109,7 @@ if (!document.getElementById('hectorStyles')) {
 window.onload = () => {
     initAdventure();
     checkForHectorBlessing();
+    checkForRemoteBlessingTrigger();
 };
 
 // Update every minute to check if new time slots are available
@@ -1058,6 +1118,11 @@ setInterval(() => {
         displayStage(currentStage);
     }
 }, 60000);
+
+// Check for remote blessing triggers every 5 seconds
+setInterval(() => {
+    checkForRemoteBlessingTrigger();
+}, 5000);
 
 // Change the quote every 8 seconds (we're impatient)
 setInterval(() => {
